@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Web Development Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Mika<span class="accent">.</span></a>
+      <nav class="nav" id="nav">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-shapes" aria-hidden="true">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+      </div>
+
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <h1 class="reveal">Hi, I'm Mika — a Front‑End Developer</h1>
+          <p class="lead reveal">I build accessible, animated, and high-performance web experiences.</p>
+
+          <p class="typing reveal">I'm currently <span id="typing"></span><span class="cursor">|</span></p>
+
+          <div class="hero-actions reveal">
+            <a class="btn primary" href="#projects">See my work</a>
+            <a class="btn ghost" href="#contact">Get in touch</a>
+          </div>
+        </div>
+
+        <div class="hero-preview reveal">
+          <div class="card project-card">
+            <div class="card-top">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+            <div class="card-body">
+              <h3>Animated Portfolio</h3>
+              <p>HTML · CSS · JavaScript</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-title reveal">Projects</h2>
+        <div class="grid">
+          <article class="project reveal">
+            <div class="project-thumb"></div>
+            <h3>Project One</h3>
+            <p>Landing page with fluid animations and responsive layout.</p>
+            <div class="project-actions">
+              <a href="#" class="btn small">View</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb"></div>
+            <h3>Project Two</h3>
+            <p>Interactive UI components with accessibility in mind.</p>
+            <div class="project-actions">
+              <a href="#" class="btn small">View</a>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb"></div>
+            <h3>Project Three</h3>
+            <p>Performance focused SPA with minimal dependencies.</p>
+            <div class="project-actions">
+              <a href="#" class="btn small">View</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container">
+        <h2 class="section-title reveal">About</h2>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>I specialize in front-end development — building fast, accessible, and animated interfaces. My focus is on clean HTML structure, modern CSS for layout and animation, and small well-tested JavaScript for interactions.</p>
+            <ul>
+              <li>Responsive layouts</li>
+              <li>CSS animations & transitions</li>
+              <li>Performance & accessibility</li>
+            </ul>
+          </div>
+          <div class="about-stats reveal">
+            <div class="stat">
+              <strong>5+</strong>
+              <span>Projects shipped</span>
+            </div>
+            <div class="stat">
+              <strong>3</strong>
+              <span>Years experience</span>
+            </div>
+            <div class="stat">
+              <strong>∞</strong>
+              <span>Curiosity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title reveal">Contact</h2>
+        <p class="reveal">Want to work together? Send an email — <a href="mailto:hello@example.com">hello@example.com</a></p>
+        <div class="socials reveal">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Mika — Built with HTML, CSS & JS</small>
+    </div>
+  </footer>
+
+  <script src="js/script.js" defer></script>
+</body>
+</html>

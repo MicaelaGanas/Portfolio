@@ -1,76 +1,65 @@
-document.addEventListener('DOMContentLoaded', ()=>{
-  const y = new Date().getFullYear();
-  document.getElementById('year').textContent = y;
+/* * AI-assisted: GitHub Copilot
+ * Tool: GitHub Copilot
+ * Date: 2025-11-26
+ * Summary of assistance: Generated initial implementation of card click handlers, lightbox modal behavior, and keyboard support.
+ * Prompts / notes (short): "How to add click handlers to open achievement lightbox and open project links in new tab. How to add keyboard support and Escape to close."
+ * Human review: Reviewed, adjusted, and edited by the repository owner and tested in browser.
+ */
+const toggleButton = document.getElementById('theme-toggle');
+const body = document.body;
 
-  // Theme toggle 
-  const toggleButton = document.getElementById('theme-toggle') || document.getElementById('themeToggle');
-  const body = document.body;
-  toggleButton && toggleButton.addEventListener('click', () => {
+if (toggleButton) {
+  toggleButton.addEventListener('click', () => {
     body.classList.toggle('dark');
   });
+  // keyboard support for Enter
+  toggleButton.addEventListener('keydown', (e) => { if (e.key === 'Enter') toggleButton.click(); });
+}
 
-  const menuToggle = document.getElementById('menuToggle');
-  const nav = document.getElementById('nav');
-  menuToggle && menuToggle.addEventListener('click', ()=>{
-    nav.classList.toggle('open');
-    menuToggle.classList.toggle('open');
-    const expanded = nav.classList.contains('open');
-    menuToggle.setAttribute('aria-expanded', expanded);
+// Card interactions: achievement preview (lightbox) and project redirect
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+
+function openLightbox(src, alt) {
+  if (!lightbox || !lightboxImg) return;
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || 'Preview';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden', 'false');
+}
+
+function closeLightbox() {
+  if (!lightbox || !lightboxImg) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  lightboxImg.src = '';
+}
+
+// Achievement cards
+document.querySelectorAll('.card.achievement-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const img = card.dataset.img || (card.querySelector('.card-img') && card.querySelector('.card-img').src);
+    if (img) openLightbox(img, (card.querySelector('.card-label') && card.querySelector('.card-label').textContent));
   });
-
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const href = a.getAttribute('href');
-      if(!href || href === '#') return;
-      const target = document.querySelector(href);
-      if(target){
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-        if(nav.classList.contains('open')){nav.classList.remove('open');menuToggle.classList.remove('open')}
-      }
-    })
-  })
-
-
-  // Typing effect
-  const roles = ['building interfaces', 'animating interactions', 'optimizing performance', 'improving accessibility'];
-  const el = document.getElementById('typing');
-  let idx = 0;
-  let char = 0;
-  let forward = true;
-  function step(){
-    const current = roles[idx];
-    if(forward){
-      char++;
-      if(char > current.length){
-        forward = false;
-        setTimeout(step, 1000);
-        return;
-      }
-    } else {
-      char--;
-      if(char === 0){
-        forward = true;
-        idx = (idx+1) % roles.length;
-      }
-    }
-    el.textContent = current.slice(0,char);
-    setTimeout(step, forward ? 80 : 40);
-  }
-  if(el) step();
-
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    })
-  }, {threshold:0.12});
-
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-  document.body.addEventListener('keydown', (e)=>{
-    if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
-  })
+  card.tabIndex = 0;
+  card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
 });
+
+// Project cards
+document.querySelectorAll('.card.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const href = card.dataset.href;
+    if (href) {
+      window.open(href, '_blank', 'noopener');
+    }
+  });
+  card.tabIndex = 0;
+  card.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); card.click(); } });
+});
+
+// Lightbox close handlers
+if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });

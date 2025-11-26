@@ -1,5 +1,3 @@
-// Small JS for interactions: typing effect, mobile menu toggle, and scroll reveal
-
 document.addEventListener('DOMContentLoaded', ()=>{
   // set year
   const y = new Date().getFullYear();

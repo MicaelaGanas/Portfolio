@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>My Web Development Portfolio</title>
+  <title>Mika — Web Development Portfolio</title>
+  <meta name="description" content="Mika's Web Development Portfolio — projects, achievements, and contact details. Built with HTML, CSS and JavaScript.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -13,11 +14,34 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="logo" href="#">Mika<span class="accent">.</span></a>
-      <nav class="nav" id="nav">
+      <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
         <a href="#projects">Projects</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Switch color theme" title="Toggle light/dark theme">
+        <span class="theme-icons" aria-hidden="true">
+          <!-- Sun icon -->
+          <svg class="icon sun" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6" fill="none" />
+            <g stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <path d="M12 2v2"/>
+              <path d="M12 20v2"/>
+              <path d="M4.93 4.93l1.41 1.41"/>
+              <path d="M17.66 17.66l1.41 1.41"/>
+              <path d="M2 12h2"/>
+              <path d="M20 12h2"/>
+              <path d="M4.93 19.07l1.41-1.41"/>
+              <path d="M17.66 6.34l1.41-1.41"/>
+            </g>
+          </svg>
+          <!-- Moon icon -->
+          <svg class="icon moon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="visually-hidden">Toggle theme</span>
+      </button>
       <button id="menuToggle" class="menu-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -46,6 +70,12 @@
         </div>
 
         <div class="hero-preview reveal">
+          <!-- Profile photo: replace `images/profile.jpg` with your photo -->
+          <div class="profile-photo">
+            <img src="images/profile - Edited-800x800.png" alt="Mika — profile photo" />
+            <!-- Recommended: square image, 800×800px (will be cropped to circle). -->
+          </div>
+
           <div class="card project-card">
             <div class="card-top">
               <div class="dot"></div>
@@ -66,29 +96,32 @@
         <h2 class="section-title reveal">Projects</h2>
         <div class="grid">
           <article class="project reveal">
-            <div class="project-thumb"></div>
-            <h3>Project One</h3>
-            <p>Landing page with fluid animations and responsive layout.</p>
+            <div class="project-thumb" style="background-image:url('images/image1.png')"></div>
+            <h3>Medical Supply Inventory System</h3>
+            <p>Card-based interface with dynamic item management, image support, and clean, responsive layout.</p>
             <div class="project-actions">
-              <a href="#" class="btn small">View</a>
+              <a href="#" class="btn small" aria-label="View project responsive landing page">Live</a>
+              <a href="https://github.com/MicaelaGanas/Medical-Supply-Inventory" class="btn small ghost" aria-label="View source code for responsive landing page">Source</a>
             </div>
           </article>
 
           <article class="project reveal">
-            <div class="project-thumb"></div>
-            <h3>Project Two</h3>
-            <p>Interactive UI components with accessibility in mind.</p>
+            <div class="project-thumb" style="background-image:url('images/image2.png')"></div>
+            <h3>Kelsey Homestay Booking Platform</h3>
+            <p>React + Supabase app for seamless listing, booking, and real-time availability management.</p>
             <div class="project-actions">
-              <a href="#" class="btn small">View</a>
+              <a href="https://oop-dev.vercel.app/" class="btn small">Live</a>
+              <a href="https://github.com/code-mmcm/oop-dev" class="btn small ghost">Source</a>
             </div>
           </article>
 
           <article class="project reveal">
-            <div class="project-thumb"></div>
-            <h3>Project Three</h3>
-            <p>Performance focused SPA with minimal dependencies.</p>
+            <div class="project-thumb" style="background-image:url('images/image5.png')"></div>
+            <h3>Naveona Tourist App</h3>
+            <p>Single-page application optimized for load time and accessibility.</p>
             <div class="project-actions">
-              <a href="#" class="btn small">View</a>
+              <a href="#" class="btn small">Live</a>
+              <a href="#" class="btn small ghost">Source</a>
             </div>
           </article>
         </div>
@@ -100,16 +133,27 @@
         <h2 class="section-title reveal">About</h2>
         <div class="about-grid">
           <div class="about-text reveal">
-            <p>I specialize in front-end development — building fast, accessible, and animated interfaces. My focus is on clean HTML structure, modern CSS for layout and animation, and small well-tested JavaScript for interactions.</p>
+            <p>I specialize in front-end development — building fast, accessible, and animated interfaces. I focus on clean HTML structure, modern CSS for layout and motion, and well-tested JavaScript for smooth interactions.</p>
+            <p>Beyond front-end work, I also develop full desktop applications using Java, C++, and object-oriented design principles.</p>
+            <p>As a project manager, I lead teams, handle task delegation, maintain timelines, and ensure high-quality output through clear communication and structured development workflows.</p>
+
+            <p><strong>Course:</strong> Bachelor of Science in Computer Science</p>
+            <p><strong>Year:</strong> 2nd Year (expected graduation: 2027)</p>
+
+            <h4>Achievements & Certifications</h4>
             <ul>
-              <li>Responsive layouts</li>
+              <li>Consistent Dean’s Lister</li>
+              <li>ET Yuchengco Scholar</li>
               <li>CSS animations & transitions</li>
               <li>Performance & accessibility</li>
+              <li>Responsive layouts</li>
+              <li>Certificate: ITS Java (Certiport)</li>
+              <li>Certificate: JavaScript Algorithms & Data Structures (freeCodeCamp)</li>
             </ul>
           </div>
           <div class="about-stats reveal">
             <div class="stat">
-              <strong>5+</strong>
+              <strong>3+</strong>
               <span>Projects shipped</span>
             </div>
             <div class="stat">
@@ -128,12 +172,15 @@
     <section class="contact" id="contact">
       <div class="container">
         <h2 class="section-title reveal">Contact</h2>
-        <p class="reveal">Want to work together? Send an email — <a href="mailto:hello@example.com">hello@example.com</a></p>
+        <p class="reveal">Want to work together? Send an email — <a href="mailto:mikaysabelbg14@gmail.com">mikaysabelbg14@gmail.com</a></p>
+
+        <p class="reveal">Find my work:</p>
         <div class="socials reveal">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Twitter</a>
+          <a href="https://github.com/MicaelaGanas" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/micaela-ysabel-ga%C3%B1as-989738248" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://twitter.com/YourHandle" target="_blank" rel="noopener">Twitter</a>
         </div>
+        <p class="reveal">Or download my resume: <a href="resume.pdf" target="_blank">Resume (PDF)</a></p>
       </div>
     </section>
   </main>

@@ -5,12 +5,62 @@ document.addEventListener('DOMContentLoaded', ()=>{
   const y = new Date().getFullYear();
   document.getElementById('year').textContent = y;
 
+  // Theme: initialize, toggle, persist and animate
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const prefersDarkMQ = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(theme){
+    root.classList.toggle('dark', theme === 'dark');
+    if(themeToggle) themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    if(themeToggle){
+      // keep icon classes in sync (for any CSS that uses them)
+      theme === 'dark' ? themeToggle.classList.add('dark') : themeToggle.classList.remove('dark');
+    }
+  }
+
+  // read stored preference
+  const storedTheme = localStorage.getItem('theme');
+  if(storedTheme){
+    applyTheme(storedTheme);
+  } else if(prefersDarkMQ && prefersDarkMQ.matches){
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
+
+  // toggle with animated transition
+  function toggleTheme(){
+    // enable smooth transitions briefly
+    root.classList.add('theme-transition');
+    window.setTimeout(()=>root.classList.remove('theme-transition'), 420);
+
+    const nowDark = root.classList.toggle('dark');
+    localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+    if(themeToggle) themeToggle.setAttribute('aria-pressed', nowDark);
+    if(themeToggle){ nowDark ? themeToggle.classList.add('dark') : themeToggle.classList.remove('dark'); }
+  }
+
+  themeToggle && themeToggle.addEventListener('click', toggleTheme);
+
+  // If user hasn't set an explicit preference, respond to system changes
+  if(prefersDarkMQ && prefersDarkMQ.addEventListener){
+    prefersDarkMQ.addEventListener('change', (e)=>{
+      if(!localStorage.getItem('theme')){
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
   // Mobile menu
   const menuToggle = document.getElementById('menuToggle');
   const nav = document.getElementById('nav');
   menuToggle && menuToggle.addEventListener('click', ()=>{
     nav.classList.toggle('open');
     menuToggle.classList.toggle('open');
+    // update aria-expanded for screen readers
+    const expanded = nav.classList.contains('open');
+    menuToggle.setAttribute('aria-expanded', expanded);
   });
 
   // Smooth links

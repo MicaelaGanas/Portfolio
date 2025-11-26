@@ -1,65 +1,122 @@
-/* * AI-assisted: GitHub Copilot
- * Tool: GitHub Copilot
- * Date: 2025-11-26
- * Summary of assistance: Generated initial implementation of card click handlers, lightbox modal behavior, and keyboard support.
- * Prompts / notes (short): "How to add click handlers to open achievement lightbox and open project links in new tab. How to add keyboard support and Escape to close."
- * Human review: Reviewed, adjusted, and edited by the repository owner and tested in browser.
- */
-const toggleButton = document.getElementById('theme-toggle');
-const body = document.body;
+document.addEventListener('DOMContentLoaded', ()=>{
+  // set year
+  const y = new Date().getFullYear();
+  document.getElementById('year').textContent = y;
 
-if (toggleButton) {
-  toggleButton.addEventListener('click', () => {
-    body.classList.toggle('dark');
-  });
-  // keyboard support for Enter
-  toggleButton.addEventListener('keydown', (e) => { if (e.key === 'Enter') toggleButton.click(); });
-}
+  // Theme: initialize, toggle, persist and animate
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+  const prefersDarkMQ = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
 
-// Card interactions: achievement preview (lightbox) and project redirect
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
-const lightboxBackdrop = document.getElementById('lightbox-backdrop');
-
-function openLightbox(src, alt) {
-  if (!lightbox || !lightboxImg) return;
-  lightboxImg.src = src;
-  lightboxImg.alt = alt || 'Preview';
-  lightbox.classList.add('open');
-  lightbox.setAttribute('aria-hidden', 'false');
-}
-
-function closeLightbox() {
-  if (!lightbox || !lightboxImg) return;
-  lightbox.classList.remove('open');
-  lightbox.setAttribute('aria-hidden', 'true');
-  lightboxImg.src = '';
-}
-
-// Achievement cards
-document.querySelectorAll('.card.achievement-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const img = card.dataset.img || (card.querySelector('.card-img') && card.querySelector('.card-img').src);
-    if (img) openLightbox(img, (card.querySelector('.card-label') && card.querySelector('.card-label').textContent));
-  });
-  card.tabIndex = 0;
-  card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
-});
-
-// Project cards
-document.querySelectorAll('.card.project-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const href = card.dataset.href;
-    if (href) {
-      window.open(href, '_blank', 'noopener');
+  function applyTheme(theme){
+    root.classList.toggle('dark', theme === 'dark');
+    if(themeToggle) themeToggle.setAttribute('aria-pressed', theme === 'dark');
+    if(themeToggle){
+      // keep icon classes in sync (for any CSS that uses them)
+      theme === 'dark' ? themeToggle.classList.add('dark') : themeToggle.classList.remove('dark');
     }
-  });
-  card.tabIndex = 0;
-  card.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); card.click(); } });
-});
+  }
 
-// Lightbox close handlers
-if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeLightbox);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  // read stored preference
+  const storedTheme = localStorage.getItem('theme');
+  if(storedTheme){
+    applyTheme(storedTheme);
+  } else if(prefersDarkMQ && prefersDarkMQ.matches){
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
+
+  // toggle with animated transition
+  function toggleTheme(){
+    // enable smooth transitions briefly
+    root.classList.add('theme-transition');
+    window.setTimeout(()=>root.classList.remove('theme-transition'), 420);
+
+    const nowDark = root.classList.toggle('dark');
+    localStorage.setItem('theme', nowDark ? 'dark' : 'light');
+    if(themeToggle) themeToggle.setAttribute('aria-pressed', nowDark);
+    if(themeToggle){ nowDark ? themeToggle.classList.add('dark') : themeToggle.classList.remove('dark'); }
+  }
+
+  themeToggle && themeToggle.addEventListener('click', toggleTheme);
+
+  // If user hasn't set an explicit preference, respond to system changes
+  if(prefersDarkMQ && prefersDarkMQ.addEventListener){
+    prefersDarkMQ.addEventListener('change', (e)=>{
+      if(!localStorage.getItem('theme')){
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+
+  // Mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  menuToggle && menuToggle.addEventListener('click', ()=>{
+    nav.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+    // update aria-expanded for screen readers
+    const expanded = nav.classList.contains('open');
+    menuToggle.setAttribute('aria-expanded', expanded);
+  });
+
+  // Smooth links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href = a.getAttribute('href');
+      if(!href || href === '#') return;
+      const target = document.querySelector(href);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth',block:'start'});
+        // close mobile menu
+        if(nav.classList.contains('open')){nav.classList.remove('open');menuToggle.classList.remove('open')}
+      }
+    })
+  })
+
+  // Typing effect
+  const roles = ['building interfaces', 'animating interactions', 'optimizing performance', 'improving accessibility'];
+  const el = document.getElementById('typing');
+  let idx = 0;
+  let char = 0;
+  let forward = true;
+  function step(){
+    const current = roles[idx];
+    if(forward){
+      char++;
+      if(char > current.length){
+        forward = false;
+        setTimeout(step, 1000);
+        return;
+      }
+    } else {
+      char--;
+      if(char === 0){
+        forward = true;
+        idx = (idx+1) % roles.length;
+      }
+    }
+    el.textContent = current.slice(0,char);
+    setTimeout(step, forward ? 80 : 40);
+  }
+  if(el) step();
+
+  // Reveal on scroll using IntersectionObserver
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    })
+  }, {threshold:0.12});
+
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // small accessibility: focus outlines for keyboard users
+  document.body.addEventListener('keydown', (e)=>{
+    if(e.key === 'Tab') document.documentElement.classList.add('show-focus');
+  })
+});

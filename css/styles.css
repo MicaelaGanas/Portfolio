@@ -138,6 +138,15 @@ body{
 .stat strong{display:block;font-size:1.3rem}
 
 .contact{padding:2rem 0}
+
+.assessment{padding:2rem 0}
+.assessment-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.25rem}
+.assessment-card{background:var(--glass);padding:1.5rem;border-radius:12px;border:1px solid var(--border-color);transition:transform .25s ease, box-shadow .25s ease; display:flex; flex-direction:column; justify-content:space-between;}
+.assessment-card:hover{transform:translateY(-4px);box-shadow:var(--card-hover-shadow)}
+.assessment-card h3{margin-top:0;font-size:1.1rem;color:var(--accent-2)}
+.assessment-card .grade{font-size:2rem;font-weight:800;color:var(--text);margin:0.5rem 0}
+.assessment-card p{color:var(--muted);font-size:0.9rem;margin-bottom:0}
+
 .socials a{margin-right:1rem;color:var(--muted);text-decoration:none}
 
 .site-footer{margin-top:3rem;padding:1.5rem 0;text-align:center;color:var(--muted);border-top:1px solid var(--border-color)}

@@ -1,0 +1,15 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Mika's Web Development Portfolio",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --open=/"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "keywords": ["portfolio", "web-development"],
+  "author": "Mika",
+  "license": "MIT"
+}

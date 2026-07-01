@@ -18,6 +18,12 @@ export interface Award {
   year?: string
 }
 
+export interface AwardReflectionPhoto {
+  src: string
+  alt: string
+  caption: string
+}
+
 export interface AwardReflection {
   quote: string
   paragraphs: string[]
@@ -25,6 +31,7 @@ export interface AwardReflection {
   project: string
   awardCount: number
   tags: string[]
+  photos: AwardReflectionPhoto[]
 }
 
 export interface Certificate {

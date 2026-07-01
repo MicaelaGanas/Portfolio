@@ -100,6 +100,23 @@ export const awardReflection: AwardReflection = {
   project: 'TBhon',
   awardCount: 3,
   tags: ['HCI', 'Triage UX', 'Multimodal ML', 'Community Health'],
+  photos: [
+    {
+      src: '/awards/reflection/showcase-presentation.png',
+      alt: 'TBhon team presenting the technology stack at CCIS Innovision 2026',
+      caption: 'Showcase · Tech stack presentation',
+    },
+    {
+      src: '/awards/reflection/team-event.png',
+      alt: 'TBhon team with Data Science professor at CCIS Innovision 2026',
+      caption: 'Innovision · With our Data Science professor',
+    },
+    {
+      src: '/awards/reflection/team-lab.png',
+      alt: 'TBhon team with App Development professor during project development',
+      caption: 'Behind the scenes · With our App Dev professor',
+    },
+  ],
 }
 
 export const certificates: Certificate[] = [

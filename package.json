@@ -1,15 +1,35 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
-  "description": "Mika's Web Development Portfolio",
-  "main": "index.html",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Mika's Web Development Portfolio — React + TypeScript",
   "scripts": {
-    "dev": "live-server --port=3000 --open=/"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^11.18.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "@types/node": "^26.0.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
   },
-  "keywords": ["portfolio", "web-development"],
+  "keywords": [
+    "portfolio",
+    "react",
+    "typescript"
+  ],
   "author": "Mika",
   "license": "MIT"
 }

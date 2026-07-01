@@ -28,6 +28,7 @@ export interface AwardReflection {
   quote: string
   paragraphs: string[]
   event: string
+  eventDetail: string
   project: string
   awardCount: number
   tags: string[]

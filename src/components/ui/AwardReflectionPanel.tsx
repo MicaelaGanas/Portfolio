@@ -32,16 +32,18 @@ export function AwardReflectionPanel({ reflection }: AwardReflectionPanelProps) 
         <div className="award-reflection-grid relative z-20">
           <aside className="award-reflection-aside">
             <span className="label-on-light">Reflection</span>
-            <p className="award-reflection-count font-display text-6xl leading-none text-nuclear-red md:text-7xl">
+            <h3 className="mt-3 font-display text-2xl leading-tight tracking-wide text-nuclear-ink md:text-3xl">
+              {reflection.event}
+            </h3>
+            <p className="mt-3 font-mono text-[10px] leading-relaxed uppercase tracking-[0.14em] text-nuclear-ink/55 md:text-[11px]">
+              {reflection.eventDetail}
+            </p>
+            <p className="award-reflection-count mt-6 font-display text-6xl leading-none text-nuclear-red md:text-7xl">
               {String(reflection.awardCount).padStart(2, '0')}
             </p>
             <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.2em] text-nuclear-ink/50">
-              Awards · {reflection.event}
+              Awards · {reflection.project}
             </p>
-
-            <blockquote className="award-reflection-quote mt-8 border-l-2 border-nuclear-red pl-4 font-display text-xl leading-snug text-nuclear-ink md:text-2xl">
-              {reflection.quote}
-            </blockquote>
 
             <div className="mt-6 flex flex-wrap gap-2">
               {reflection.tags.map((tag) => (
@@ -53,11 +55,11 @@ export function AwardReflectionPanel({ reflection }: AwardReflectionPanelProps) 
           </aside>
 
           <div className="award-reflection-body">
-            <p className="label-on-light mb-4">Our HCI journey with {reflection.project}</p>
+            <p className="label-on-light mb-4">My experience presenting {reflection.project}</p>
             {reflection.paragraphs.map((paragraph, i) => (
               <motion.p
                 key={i}
-                className="body-on-light mb-5 last:mb-0"
+                className="body-on-light mb-5"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -66,6 +68,10 @@ export function AwardReflectionPanel({ reflection }: AwardReflectionPanelProps) 
                 {paragraph}
               </motion.p>
             ))}
+
+            <blockquote className="award-reflection-quote mt-8 border-l-2 border-nuclear-red pl-4 font-display text-xl leading-snug text-nuclear-ink md:text-2xl">
+              {reflection.quote}
+            </blockquote>
           </div>
         </div>
       </NuclearCard>

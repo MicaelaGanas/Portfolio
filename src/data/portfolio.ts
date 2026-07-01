@@ -90,16 +90,18 @@ export const awards: Award[] = [
 
 export const awardReflection: AwardReflection = {
   quote:
-    'Strong HCI is not only about polished screens, but about designing for real users in real health settings.',
-  paragraphs: [
-    'Receiving three awards at CCIS Innovision 2026 was one of the most meaningful moments of our HCI journey with TBhon. Presenting a staff-operated TB screening system—combining symptom checklists, cough audio, sputum imaging, and IoT capture—put everything we learned about HCI into practice.',
-    'Judges valued how we balanced technical depth with honest scope: TBhon supports triage, not diagnosis, and keeps staff in control through review steps and clear disclaimers. Preparing for the showcase also pushed us to explain complex multimodal fusion in simple, human terms.',
-    'The experience reinforced that empathy, usability testing, and responsible design matter as much as model accuracy. We left Innovision more confident that thoughtful interaction design can help bridge the gap between innovation and community health impact.',
-  ],
+    'Good HCI is not only about polished interfaces, but about trust, clarity, and responsible design for real health settings.',
   event: 'CCIS Innovision 2026',
+  eventDetail:
+    'Annual Academic Colloquium and Project Showcase · June 20, 2026 · RG Birrey Building, Davao City',
+  paragraphs: [
+    'Receiving three awards at CCIS Innovision 2026 was one of the most meaningful moments of my academic life. The defense event was both fun and memorable, and I was grateful to present TBhon to experts in the field.',
+    'Our application and research were thoroughly evaluated, and the panel gave insightful and constructive feedback. They examined our data collection process, hybrid model development, system architecture, and machine learning code structure. Their recommendations, including improving data handling through collaboration or cloud tools, helped me understand our strengths and areas for improvement.',
+    'I also learned that good HCI is not only about polished interfaces, but about trust, clarity, and responsible design for real health settings. This experience gave me valuable knowledge and confidence to refine our work and approach future development more effectively.',
+  ],
   project: 'TBhon',
   awardCount: 3,
-  tags: ['HCI', 'Triage UX', 'Multimodal ML', 'Community Health'],
+  tags: ['HCI', 'System Architecture', 'Multimodal ML', 'Panel Defense'],
   photos: [
     {
       src: '/awards/reflection/showcase-presentation.png',

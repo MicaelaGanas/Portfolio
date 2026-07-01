@@ -91,10 +91,10 @@ export function HeroSection() {
 
         <NuclearCard
           bg="red"
-          className="relative flex min-h-[480px] items-center justify-center overflow-hidden p-8 md:min-h-[540px] md:p-10 lg:min-h-[600px]"
+          className="hero-profile-card relative flex min-h-[480px] flex-col overflow-hidden p-0 md:min-h-[540px] lg:min-h-[600px]"
           readout={{
             topLeft: 'PROFILE',
-            topRight: 'IMG/800',
+            topRight: 'IMG/2022',
             bottomLeft: "DEAN'S LISTER",
             bottomRight: '3+ SHIPPED',
           }}
@@ -102,55 +102,94 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.12 }}
         >
+          <div className="hero-profile-grain pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />
           <div
-            className="pointer-events-none absolute inset-0 opacity-[0.08]"
+            className="pointer-events-none absolute inset-0 z-[1] opacity-[0.1]"
             aria-hidden="true"
             style={{
-              backgroundImage: `repeating-linear-gradient(-45deg, transparent, transparent 8px, rgba(0,0,0,0.5) 8px, rgba(0,0,0,0.5) 9px)`,
+              backgroundImage: `repeating-linear-gradient(-45deg, transparent, transparent 6px, rgba(0,0,0,0.55) 6px, rgba(0,0,0,0.55) 7px)`,
             }}
           />
 
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-[clamp(8rem,28vw,18rem)] leading-none text-nuclear-black/15 select-none">
-              前端
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
+            <span className="hero-profile-watermark font-display leading-none text-nuclear-black/20 select-none">
+              MICAELA
             </span>
           </div>
 
-          <Crosshair className="absolute left-6 top-6 opacity-30" size={48} />
+          <div className="pointer-events-none absolute left-5 top-14 z-20 max-w-[10rem] md:left-7 md:top-16 md:max-w-[11.5rem]">
+            <p className="font-display text-3xl leading-none text-nuclear-black/40 md:text-4xl">MIKA</p>
+            <p className="mt-3 font-mono text-[9px] leading-relaxed text-nuclear-white/90 md:text-[10px]">
+              {profile.name} · {profile.degree}. {profile.year}.
+            </p>
+          </div>
 
-          <motion.div
-            className="relative z-20 h-56 w-56 overflow-hidden rounded-full border-[5px] border-nuclear-black shadow-[0_0_0_8px_rgba(0,0,0,0.15)] md:h-64 md:w-64 lg:h-72 lg:w-72"
-            whileHover={{ scale: 1.04 }}
-            transition={{ type: 'spring', stiffness: 300 }}
-          >
-            <img
-              src={profile.photo}
-              alt={`${profile.name} — profile photo`}
-              className="h-full w-full object-cover grayscale contrast-125"
-            />
-          </motion.div>
+          <div className="hero-profile-jagged pointer-events-none absolute right-5 top-[38%] z-20 flex items-center justify-center md:right-7">
+            <span className="font-display text-3xl tracking-wide text-nuclear-red md:text-4xl">前端</span>
+          </div>
 
-          <motion.div
-            className="absolute bottom-8 left-8 z-20 rounded-xl border-2 border-nuclear-black/20 bg-nuclear-black px-4 py-3 shadow-lg"
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 3.2, repeat: Infinity }}
-          >
+          <svg aria-hidden="true" className="absolute h-0 w-0 overflow-hidden">
+            <defs>
+              <filter
+                id="hero-photo-cutout"
+                x="-20%"
+                y="-20%"
+                width="140%"
+                height="140%"
+                colorInterpolationFilters="sRGB"
+              >
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.028"
+                  numOctaves="2"
+                  seed="6"
+                  result="noise"
+                />
+                <feDisplacementMap
+                  in="SourceAlpha"
+                  in2="noise"
+                  scale="7"
+                  xChannelSelector="R"
+                  yChannelSelector="G"
+                  result="roughAlpha"
+                />
+                <feMorphology operator="dilate" radius="11" in="roughAlpha" result="dilated" />
+                <feComposite in="dilated" in2="SourceAlpha" operator="out" result="borderAlpha" />
+                <feFlood floodColor="#f2f2f2" result="white" />
+                <feComposite in="white" in2="borderAlpha" operator="in" result="whiteBorder" />
+                <feMerge>
+                  <feMergeNode in="whiteBorder" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+          </svg>
+
+          <div className="pointer-events-none absolute inset-0 z-[15] flex items-center justify-center">
+            <div className="hero-profile-photo-wrap">
+              <img
+                src={profile.photo}
+                alt={`${profile.name} — profile photo`}
+                className="hero-profile-photo"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
+
+          <div className="absolute bottom-5 left-5 z-30 rounded-xl border-2 border-nuclear-black/25 bg-nuclear-black px-4 py-3 shadow-[4px_4px_0_rgba(0,0,0,0.35)] md:bottom-7 md:left-7">
             <p className="font-display text-2xl leading-none text-nuclear-white">3+ Projects</p>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-nuclear-white/55">
               Shipped &amp; Live
             </p>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="absolute right-8 top-20 z-20 rounded-xl border-2 border-nuclear-black/20 bg-nuclear-black px-4 py-3 shadow-lg"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 3.8, repeat: Infinity }}
-          >
+          <div className="absolute right-5 top-14 z-30 rounded-xl border-2 border-nuclear-black/25 bg-nuclear-black px-4 py-3 shadow-[4px_4px_0_rgba(0,0,0,0.35)] md:right-7 md:top-16">
             <p className="font-display text-2xl leading-none text-nuclear-white">Dean&apos;s Lister</p>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-nuclear-white/55">
               Consistent
             </p>
-          </motion.div>
+          </div>
         </NuclearCard>
       </div>
 

@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { CustomCursor } from '@/components/effects/CustomCursor'
 import { GrainOverlay } from '@/components/effects/GrainOverlay'
 import { SiteBackground } from '@/components/effects/SiteBackground'
 import { Footer } from '@/components/layout/Footer'
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <>
       <SiteBackground />
+      <CustomCursor />
       <ScrollProgress />
       <GrainOverlay />
       <div className="relative z-10">

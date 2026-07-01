@@ -36,9 +36,16 @@ export interface Certificate {
   credentialUrl?: string
 }
 
+export type AchievementIcon = 'scholar' | 'certificate' | 'star' | 'award'
+
 export interface Achievement {
-  icon: string
+  icon: AchievementIcon
   label: string
+}
+
+export interface PersonalInterest {
+  tag: string
+  detail: string
 }
 
 export interface Stat {

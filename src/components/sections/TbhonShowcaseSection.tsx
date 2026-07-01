@@ -277,7 +277,11 @@ export function TbhonShowcaseSection() {
               Open in Figma ↗
             </a>
           </div>
-          <div ref={figmaRef} className="overflow-hidden border border-nuclear-white/20">
+          <div
+            ref={figmaRef}
+            data-cursor-native
+            className="cursor-native-zone overflow-hidden border border-nuclear-white/20"
+          >
             {figmaReady ? (
               <iframe
                 title="TBhon System Wireframes — Figma prototype"

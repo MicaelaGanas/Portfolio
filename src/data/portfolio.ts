@@ -1,13 +1,13 @@
-import type { Achievement, Award, AwardReflection, Certificate, NavLink, Project, Stat } from '@/types/portfolio'
+import type { Achievement, Award, AwardReflection, Certificate, NavLink, PersonalInterest, Project, Stat } from '@/types/portfolio'
 
 export const profile = {
   name: 'Micaela Ganas',
   shortName: 'Mika',
-  role: 'Full Stack Developer',
-  tagline: 'I build accessible, animated, and high-performance web experiences that users love.',
+  role: 'Full Stack & ML Developer',
+  tagline: 'Full-stack, machine learning, and cloud — from system architecture to interfaces users love.',
   email: 'mikaysabelbg14@gmail.com',
   available: true,
-  photo: '/images/profile - Edited-800x800.png',
+  photo: '/images/profile-mika-edited.png',
   degree: 'BS Computer Science',
   year: '2nd Year · Est. Grad 2027',
   resumeUrl: '/resume.pdf',
@@ -20,28 +20,45 @@ export const profile = {
 
 export const typingRoles = [
   'building interfaces',
-  'animating interactions',
-  'optimizing performance',
+  'training ML models',
+  'designing system architecture',
+  'deploying on AWS',
+  'shipping cloud apps',
   'leading projects',
-  'improving accessibility',
 ]
 
 export const techStack = [
-  'HTML5', 'CSS3', 'JavaScript', 'React', 'TypeScript',
-  'Java', 'C++', 'Supabase', 'Tailwind', 'Git', 'Figma',
+  'HTML5', 'CSS3', 'JavaScript', 'React', 'TypeScript', 'Next.js',
+  'Python', 'Java', 'C++',
+  'AWS', 'DigitalOcean', 'Supabase',
+  'Tailwind', 'Git', 'Figma',
 ]
 
-export const heroTech = ['HTML', 'CSS', 'JavaScript', 'React', 'Java']
+export const heroTech = ['React', 'Python', 'TypeScript', 'AWS', 'ML']
 
 export const aboutText = [
-  'I specialize in front-end development — building fast, accessible, and animated interfaces. I focus on clean HTML structure, modern CSS for layout and motion, and well-tested JavaScript for smooth interactions.',
-  'Beyond front-end work, I also develop full desktop applications using Java, C++, and object-oriented design principles. As a project manager, I lead teams, handle task delegation, and maintain timelines.',
+  'I build full-stack web apps with React, TypeScript, and modern tooling — fast, accessible, and polished. I also work in machine learning, from data pipelines to model integration, and design system architecture for products that need to scale.',
+  'I develop in Python, Java, and C++, deploy on AWS and DigitalOcean, and lead teams as a project manager — balancing clean code, cloud infrastructure, and delivery timelines.',
+]
+
+export const beyondTechNote =
+  'When I am not debugging or deploying, I am usually chasing good design, good stories, and good coffee.'
+
+export const personalInterests: PersonalInterest[] = [
+  { tag: 'Illustration', detail: 'Vintage poster art & bold graphic prints' },
+  { tag: 'Anime & Film', detail: 'Character-driven stories and cinematic visuals' },
+  { tag: 'Music', detail: 'Late-night playlists while sketching or reading' },
+  { tag: 'Cafés', detail: 'Finding quiet spots to people-watch and reset' },
+  { tag: 'Photography', detail: 'Street scenes, portraits, and accidental compositions' },
+  { tag: 'Reading', detail: 'Essays, design zines, and anything with strong visuals' },
 ]
 
 export const achievements: Achievement[] = [
-  { icon: '🏆', label: "Consistent Dean's Lister" },
-  { icon: '🎓', label: 'ET Yuchengco Scholar' },
-  { icon: '⭐', label: "President's Lister — 1st Year 2nd Term" },
+  { icon: 'scholar', label: 'ET Yuchengco Scholar' },
+  { icon: 'certificate', label: 'IT Specialist — Java' },
+  { icon: 'star', label: "President's Lister — 1st Year 2nd Term" },
+  { icon: 'star', label: "President's Lister — 2nd Year 2nd Term" },
+  { icon: 'award', label: "Consistent Dean's Lister" },
 ]
 
 export const awards: Award[] = [
